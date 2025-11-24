@@ -57,4 +57,46 @@ class TextProcessorTest {
         );
         assertEquals("El texto excede el límite de 1000 caracteres", exception.getMessage());
     }
+
+    // Caso 7: Texto exactamente en el límite
+    @Test
+    void testTextAtMaxLengthValid() {
+        String text = "a".repeat(1000);
+        String result = TextProcessor.reverseAndCapitalize(text);
+        assertEquals("A".repeat(1000), result);
+    }
+
+    // Caso 8: Texto con caracteres especiales
+    @Test
+    void testTextWithSpecialCharacters() {
+        assertEquals("!ALOH¡", TextProcessor.reverseAndCapitalize("¡Hola!"));
+    }
+
+    // Caso 9: Texto con números
+    @Test
+    void testTextWithNumbers() {
+        assertEquals("321CBA", TextProcessor.reverseAndCapitalize("abc123"));
+    }
+
+    // Caso 10: Texto mixto con mayúsculas y minúsculas
+    @Test
+    void testTextWithMixedCase() {
+        assertEquals("ALOH", TextProcessor.reverseAndCapitalize("HoLa"));
+    }
+
+    // Caso 11: Texto palíndromo
+    @Test
+    void testPalindromeText() {
+        assertEquals("ANA", TextProcessor.reverseAndCapitalize("ana"));
+    }
+
+    // Caso 12: Validación agrupada con assertAll
+    @Test
+    void testMultipleValidTexts() {
+        assertAll(
+            () -> assertEquals("ALOH", TextProcessor.reverseAndCapitalize("hola")),
+            () -> assertEquals("321CBA", TextProcessor.reverseAndCapitalize("abc123")),
+            () -> assertEquals("ANA", TextProcessor.reverseAndCapitalize("ana"))
+        );
+    }
 }
