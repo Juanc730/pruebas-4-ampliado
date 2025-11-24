@@ -37,7 +37,7 @@ class TextProcessorTest {
         assertEquals("El texto no puede estar vacío o solo contener espacios", exception.getMessage());
     }
 
-    // Caso 5: Texto con solo espacios
+    // Caso 5: Texto solo espacios
     @Test
     void testTextWithOnlySpacesThrowsException() {
         IllegalArgumentException exception = assertThrows(
